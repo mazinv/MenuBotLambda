@@ -25,7 +25,7 @@ public class QueryHandler {
 
     public QueryHandler() throws IOException {
         this.restaurantMap = new HashMap<>();
-        org.jsoup.nodes.Document doc = Jsoup.connect("https://www.menicka.cz/plzen.html?datum=2021-04-06").get();
+        org.jsoup.nodes.Document doc = Jsoup.connect("https://www.menicka.cz/plzen.html").get();
         Elements restaurants = doc.select("div.menicka_detail");
         Elements names = restaurants.select("div.nazev");
         StringBuilder sb = new StringBuilder();
@@ -39,7 +39,7 @@ public class QueryHandler {
             Elements prices = restaurant.select("div.cena");
 
             int menuSize = meals.size();
-            var r = new Restaurant(name, "", menuSize);
+            var r = new Restaurant(name, menuSize);
 
             for (int j = 0; j < meals.size(); j++) {
                 if (j >= prices.size())

@@ -6,21 +6,20 @@ import java.util.List;
 public class Restaurant {
 
     String name;
-    String gsm;
     List<String> menu;
     String menuString;
 
-    public Restaurant(String name, String gsm, int menuSize) {
+    public Restaurant(String name, int menuSize) {
         this.name = name;
-        this.gsm = gsm;
         this.menu = new ArrayList<>(menuSize);
         this.menuString = null;
     }
 
     public void createMenuString(StringBuilder sb) {
-        for (String menu : this.menu) {
-            sb.append(menu);
-            sb.append("# ");
+        for (int i = 0; i < this.menu.size(); i++) {
+            sb.append(this.menu.get(i));
+            if (i != this.menu.size() -1)
+                sb.append(" ••• ");
         }
 
         this.menuString = sb.toString();
